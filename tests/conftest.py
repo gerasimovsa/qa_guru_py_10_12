@@ -1,10 +1,28 @@
 import pytest
 import allure
-from selene import browser
+from selene import browser, Browser, Config
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 
 
 @pytest.fixture(scope="function", autouse=True)
 def setup_browser():
+    options = Options()
+    capabilities = {
+        "browserName": "firefox",
+        "browserVersion": "123.0",
+        "selenoid:options": {
+            "enableVideo": True
+        }
+    }
+    options.capabilities.update(capabilities)
+    driver = webdriver.Remote(
+        command_executor="https://selenoid.autotests.cloud/wd/hub",
+        options=options
+    )
+
+    browser = Browser(Config(driver))
+
     with allure.step("Settings base url"):
         browser.config.base_url = "https://demoqa.com"
     with allure.step("Selecting Firefox for browser"):
