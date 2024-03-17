@@ -2,7 +2,7 @@ import pytest
 import allure
 from selene import browser
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from utils import attach
 
 
@@ -18,8 +18,8 @@ def setup_browser():
     with allure.step("Setting up Selenoid remote executor"):
         options = Options()
         selenoid_capabilities = {
-            "browserName": "firefox",
-            "browserVersion": "123.0",
+            "browserName": "chrome",
+            "browserVersion": "120.0",
             "selenoid:options": {
                 "enableVNC": True,
                 "enableVideo": True
