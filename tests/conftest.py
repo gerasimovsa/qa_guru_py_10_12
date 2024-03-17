@@ -11,7 +11,7 @@ def setup_browser():
     with allure.step("Settings base url"):
         browser.config.base_url = "https://demoqa.com"
     with allure.step("Setting up timeout for browser"):
-        browser.config.timeout = 6.0
+        browser.config.timeout = 10.0
     with allure.step("Setting up browser window size"):
         browser.config.window_width = 1920
         browser.config.window_height = 1200
